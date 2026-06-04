@@ -1,14 +1,20 @@
 import { useRef, useState, useEffect } from "react";
 import { useReveal } from "@/hooks/useReveal";
-import beforeImg from "@/assets/before-1.jpg";
-import afterImg from "@/assets/after-1.jpg";
+import beforeFacetas from "@/assets/before-1.jpg";
+import afterFacetas from "@/assets/after-1.jpg";
+import beforeClareamento from "@/assets/before-clareamento.jpg";
+import afterClareamento from "@/assets/after-clareamento.jpg";
+import beforeHarmonizacao from "@/assets/before-harmonizacao.jpg";
+import afterHarmonizacao from "@/assets/after-harmonizacao.jpg";
+import beforeLabial from "@/assets/before-labial.jpg";
+import afterLabial from "@/assets/after-labial.jpg";
 import { Move } from "lucide-react";
 
 const cases = [
-  { id: "facetas", label: "Facetas de Resina", before: beforeImg, after: afterImg },
-  { id: "clareamento", label: "Clareamento", before: beforeImg, after: afterImg },
-  { id: "harmonizacao", label: "Harmonização Facial", before: beforeImg, after: afterImg },
-  { id: "labial", label: "Preenchimento Labial", before: beforeImg, after: afterImg },
+  { id: "facetas", label: "Facetas de Resina", before: beforeFacetas, after: afterFacetas, patient: "Marina, 28 anos", sessions: "2 sessões" },
+  { id: "clareamento", label: "Clareamento", before: beforeClareamento, after: afterClareamento, patient: "Juliana, 32 anos", sessions: "3 sessões" },
+  { id: "harmonizacao", label: "Harmonização Facial", before: beforeHarmonizacao, after: afterHarmonizacao, patient: "Camila, 30 anos", sessions: "1 sessão" },
+  { id: "labial", label: "Preenchimento Labial", before: beforeLabial, after: afterLabial, patient: "Beatriz, 26 anos", sessions: "1 sessão" },
 ];
 
 export function BeforeAfter() {
@@ -96,6 +102,17 @@ export function BeforeAfter() {
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white shadow-luxe flex items-center justify-center group-hover:scale-110 transition-transform">
               <Move size={20} className="text-ink rotate-90" />
+            </div>
+          </div>
+
+          <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4 text-white">
+            <div className="glass px-4 py-2 rounded-xl">
+              <div className="text-[10px] tracking-[0.2em] uppercase opacity-80">Paciente</div>
+              <div className="text-sm font-medium">{active.patient}</div>
+            </div>
+            <div className="glass px-4 py-2 rounded-xl text-right">
+              <div className="text-[10px] tracking-[0.2em] uppercase opacity-80">Tratamento</div>
+              <div className="text-sm font-medium">{active.sessions}</div>
             </div>
           </div>
         </div>
