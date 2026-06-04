@@ -104,6 +104,17 @@ export function BeforeAfter() {
               <Move size={20} className="text-ink rotate-90" />
             </div>
           </div>
+
+          <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4 text-white">
+            <div className="glass px-4 py-2 rounded-xl">
+              <div className="text-[10px] tracking-[0.2em] uppercase opacity-80">Paciente</div>
+              <div className="text-sm font-medium">{active.patient}</div>
+            </div>
+            <div className="glass px-4 py-2 rounded-xl text-right">
+              <div className="text-[10px] tracking-[0.2em] uppercase opacity-80">Tratamento</div>
+              <div className="text-sm font-medium">{active.sessions}</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
