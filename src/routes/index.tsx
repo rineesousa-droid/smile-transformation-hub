@@ -56,12 +56,9 @@ function Index() {
       <Hero />
       <SocialProof />
       <BeforeAfter />
-      <Gallery />
       <Procedures />
       <About />
-      <Differentials />
       <Testimonials />
-      <Tour />
       <HowItWorks />
       <FAQ />
       <FinalCTA />
