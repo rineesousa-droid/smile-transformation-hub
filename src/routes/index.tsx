@@ -3,12 +3,9 @@ import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
 import { SocialProof } from "@/components/site/SocialProof";
 import { BeforeAfter } from "@/components/site/BeforeAfter";
-import { Gallery } from "@/components/site/Gallery";
 import { Procedures } from "@/components/site/Procedures";
 import { About } from "@/components/site/About";
-import { Differentials } from "@/components/site/Differentials";
 import { Testimonials } from "@/components/site/Testimonials";
-import { Tour } from "@/components/site/Tour";
 import { HowItWorks } from "@/components/site/HowItWorks";
 import { FAQ } from "@/components/site/FAQ";
 import { FinalCTA } from "@/components/site/FinalCTA";
@@ -59,12 +56,9 @@ function Index() {
       <Hero />
       <SocialProof />
       <BeforeAfter />
-      <Gallery />
       <Procedures />
       <About />
-      <Differentials />
       <Testimonials />
-      <Tour />
       <HowItWorks />
       <FAQ />
       <FinalCTA />
