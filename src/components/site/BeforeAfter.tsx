@@ -11,10 +11,10 @@ import afterLabial from "@/assets/after-labial.jpg";
 import { Move } from "lucide-react";
 
 const cases = [
-  { id: "facetas", label: "Facetas de Resina", before: beforeFacetas, after: afterFacetas, patient: "Marina, 28 anos", sessions: "2 sessões" },
-  { id: "clareamento", label: "Clareamento", before: beforeClareamento, after: afterClareamento, patient: "Juliana, 32 anos", sessions: "3 sessões" },
-  { id: "harmonizacao", label: "Harmonização Facial", before: beforeHarmonizacao, after: afterHarmonizacao, patient: "Camila, 30 anos", sessions: "1 sessão" },
-  { id: "labial", label: "Preenchimento Labial", before: beforeLabial, after: afterLabial, patient: "Beatriz, 26 anos", sessions: "1 sessão" },
+  { id: "facetas", label: "Facetas de Resina", before: beforeFacetas, after: afterFacetas, patient: "Caso real — paciente YL", sessions: "2 sessões" },
+  { id: "clareamento", label: "Clareamento", before: beforeClareamento, after: afterClareamento, patient: "Caso real — paciente YL", sessions: "3 sessões" },
+  { id: "harmonizacao", label: "Gengivoplastia", before: beforeHarmonizacao, after: afterHarmonizacao, patient: "Caso real — paciente YL", sessions: "1 sessão" },
+  { id: "labial", label: "Preenchimento Labial", before: beforeLabial, after: afterLabial, patient: "Caso real — paciente YL", sessions: "1 sessão" },
 ];
 
 export function BeforeAfter() {
