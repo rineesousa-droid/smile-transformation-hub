@@ -73,7 +73,11 @@ export function Testimonials() {
               <Quote size={32} className="text-gold/60 mb-4" />
               <div className="flex gap-0.5 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} className="fill-gold text-gold" />
+                  <Star
+                    key={i}
+                    size={14}
+                    className={i < c.rating ? "fill-gold text-gold" : "text-white/20"}
+                  />
                 ))}
               </div>
               <p className="text-white/85 leading-relaxed text-[15px]">"{c.quote}"</p>
