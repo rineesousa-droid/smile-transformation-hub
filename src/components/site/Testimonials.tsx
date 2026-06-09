@@ -5,36 +5,42 @@ const comments = [
   {
     name: "Mariana S.",
     role: "Facetas de Resina",
+    rating: 5,
     quote:
       "Minha autoestima mudou completamente. A Dra. Yasmin entendeu exatamente o que eu queria e o resultado ficou natural e lindo. Não consigo parar de sorrir!",
   },
   {
     name: "Carolina F.",
     role: "Harmonização Facial",
+    rating: 4,
     quote:
       "Resultado tão natural que ninguém percebe — só notam que estou mais bonita. Atendimento atencioso do começo ao fim.",
   },
   {
     name: "Beatriz L.",
     role: "Preenchimento Labial",
+    rating: 5,
     quote:
       "Cuidado, técnica e bom gosto. Saí da clínica com lábios delicados e exatamente do jeito que sonhava. Recomendo de olhos fechados.",
   },
   {
     name: "Rafael M.",
     role: "Clareamento Dental",
+    rating: 4,
     quote:
-      "Voltei a sorrir com confiança. Equipe nota mil, ambiente impecável e um profissionalismo raro. Vale cada centavo.",
+      "Voltei a sorrir com confiança. Equipe nota mil, ambiente impecável. Só achei a espera no dia um pouquinho longa, mas valeu a pena.",
   },
   {
     name: "Letícia A.",
     role: "Gengivoplastia",
+    rating: 5,
     quote:
       "Sempre tive vergonha do meu sorriso gengival. Hoje sorrio sem medo. Obrigada Dra. Yasmin pela sensibilidade e cuidado!",
   },
   {
     name: "Patrícia M.",
     role: "Facetas + Clareamento",
+    rating: 5,
     quote:
       "Profissional excepcional. Explicou cada etapa, me deixou super tranquila e o resultado superou todas as expectativas.",
   },
@@ -67,7 +73,11 @@ export function Testimonials() {
               <Quote size={32} className="text-gold/60 mb-4" />
               <div className="flex gap-0.5 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} className="fill-gold text-gold" />
+                  <Star
+                    key={i}
+                    size={14}
+                    className={i < c.rating ? "fill-gold text-gold" : "text-white/20"}
+                  />
                 ))}
               </div>
               <p className="text-white/85 leading-relaxed text-[15px]">"{c.quote}"</p>
