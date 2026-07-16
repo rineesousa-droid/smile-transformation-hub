@@ -78,16 +78,27 @@ export function BeforeAfter() {
 
         <div
           ref={containerRef}
-          className="relative w-full aspect-[16/10] max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-luxe select-none cursor-ew-resize group"
+          className={`relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-luxe select-none cursor-ew-resize group ${
+            active.id === "labial" ? "aspect-[4/3]" : "aspect-[16/10]"
+          }`}
           onMouseDown={() => (dragging.current = true)}
           onTouchStart={() => (dragging.current = true)}
         >
-          <img src={active.after} alt="Depois" className="absolute inset-0 w-full h-full object-contain bg-black/90" loading="lazy" />
+          <img
+            src={active.after}
+            alt="Depois"
+            className={`absolute inset-0 w-full h-full ${
+              active.id === "labial" ? "object-cover object-center" : "object-contain bg-black/90"
+            }`}
+            loading="lazy"
+          />
           <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
             <img
               src={active.before}
               alt="Antes"
-              className="absolute inset-0 h-full w-[100vw] max-w-none object-contain bg-black/90"
+              className={`absolute inset-0 h-full w-[100vw] max-w-none ${
+                active.id === "labial" ? "object-cover object-center" : "object-contain bg-black/90"
+              }`}
               style={{ width: `${(100 / pos) * 100}%` }}
               loading="lazy"
             />
