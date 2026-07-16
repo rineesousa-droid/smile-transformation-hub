@@ -84,12 +84,21 @@ export function BeforeAfter() {
           onMouseDown={() => (dragging.current = true)}
           onTouchStart={() => (dragging.current = true)}
         >
-          <img src={active.after} alt="Depois" className="absolute inset-0 w-full h-full object-contain bg-black/90" loading="lazy" />
+          <img
+            src={active.after}
+            alt="Depois"
+            className={`absolute inset-0 w-full h-full ${
+              active.id === "labial" ? "object-cover object-center" : "object-contain bg-black/90"
+            }`}
+            loading="lazy"
+          />
           <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
             <img
               src={active.before}
               alt="Antes"
-              className="absolute inset-0 h-full w-[100vw] max-w-none object-contain bg-black/90"
+              className={`absolute inset-0 h-full w-[100vw] max-w-none ${
+                active.id === "labial" ? "object-cover object-center" : "object-contain bg-black/90"
+              }`}
               style={{ width: `${(100 / pos) * 100}%` }}
               loading="lazy"
             />
