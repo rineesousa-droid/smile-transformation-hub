@@ -4,7 +4,7 @@ import { waLink } from "@/lib/whatsapp";
 
 export function Hero() {
   return (
-    <section id="top" className="relative min-h-screen flex items-center overflow-hidden bg-ink">
+    <section id="top" className="relative min-h-[85vh] flex items-center overflow-hidden bg-ink">
       {/* Background "video" — animated image with slow zoom + overlay */}
       <div className="absolute inset-0">
         <img
