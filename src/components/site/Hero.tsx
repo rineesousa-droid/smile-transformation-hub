@@ -1,5 +1,5 @@
 import { ArrowRight, Play, Star } from "lucide-react";
-import heroImg from "@/assets/hero-smile.jpg";
+import heroImg from "@/assets/dra-yasmin.jpg";
 import { waLink } from "@/lib/whatsapp";
 
 export function Hero() {
@@ -10,7 +10,7 @@ export function Hero() {
         <img
           src={heroImg}
           alt="Sorriso transformado por facetas de resina premium"
-          className="w-full h-full object-cover animate-slow-zoom"
+          className="w-full h-full object-cover object-[75%_center] animate-slow-zoom"
           fetchPriority="high"
           width={1920}
           height={1080}
