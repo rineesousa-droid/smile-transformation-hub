@@ -1,5 +1,5 @@
 import { ArrowRight, Play, Star } from "lucide-react";
-import heroImg from "@/assets/hero-smile.jpg";
+import heroImg from "@/assets/dra-yasmin.jpg";
 import { waLink } from "@/lib/whatsapp";
 
 export function Hero() {
