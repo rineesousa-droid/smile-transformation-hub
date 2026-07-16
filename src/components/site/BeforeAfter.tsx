@@ -79,7 +79,7 @@ export function BeforeAfter() {
         <div
           ref={containerRef}
           className={`relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-luxe select-none cursor-ew-resize group ${
-            active.id === "labial" ? "aspect-[16/8]" : "aspect-[16/10]"
+            active.id === "labial" ? "aspect-[4/3]" : "aspect-[16/10]"
           }`}
           onMouseDown={() => (dragging.current = true)}
           onTouchStart={() => (dragging.current = true)}
