@@ -4,7 +4,7 @@ import { waLink } from "@/lib/whatsapp";
 
 export function Hero() {
   return (
-    <section id="top" className="relative min-h-screen flex items-center overflow-hidden bg-ink">
+    <section id="top" className="relative min-h-[85vh] flex items-center overflow-hidden bg-ink">
       {/* Background "video" — animated image with slow zoom + overlay */}
       <div className="absolute inset-0">
         <img
@@ -23,9 +23,9 @@ export function Hero() {
       <div className="absolute top-1/4 right-[8%] w-72 h-72 rounded-full bg-gradient-gold opacity-20 blur-3xl animate-float" />
       <div className="absolute bottom-1/4 left-[5%] w-56 h-56 rounded-full bg-gold-light opacity-10 blur-3xl animate-float" style={{ animationDelay: "2s" }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-16 w-full">
         <div className="max-w-3xl text-white animate-fade-up">
-          <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-8">
+          <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-6">
             <Star size={14} className="fill-gold text-gold" />
             <span className="text-xs tracking-wider uppercase font-medium">+30.000 Sorrisos Transformados</span>
           </div>
@@ -38,12 +38,12 @@ export function Hero() {
             Autoestima
           </h1>
 
-          <p className="mt-8 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed font-light">
+          <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed font-light">
             Mais de 30 mil sorrisos transformados através de tratamentos
             personalizados e tecnologia de ponta com a Dra. Yasmin Lopes em Fortaleza.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <a
               href={waLink()}
               target="_blank"
@@ -62,7 +62,7 @@ export function Hero() {
             </a>
           </div>
 
-          <div className="mt-16 flex items-center gap-6 text-white/70 text-sm">
+          <div className="mt-12 flex items-center gap-6 text-white/70 text-sm">
             <div className="flex -space-x-2">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="w-9 h-9 rounded-full border-2 border-white/30 bg-gradient-gold" />
