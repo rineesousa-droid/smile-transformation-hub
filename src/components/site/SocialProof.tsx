@@ -39,8 +39,8 @@ export function SocialProof() {
     <section aria-label="Prova social" className="py-16 md:py-24 bg-cream border-y border-border">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8">
-          {CLINIC.stats.map((s) => (
-            <Stat key={s.key} {...s} />
+          {CLINIC.stats.map(({ key, ...s }) => (
+            <Stat key={key} {...s} />
           ))}
         </div>
       </div>
