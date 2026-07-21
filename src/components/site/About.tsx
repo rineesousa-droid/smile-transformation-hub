@@ -1,45 +1,74 @@
 import { useReveal } from "@/hooks/useReveal";
 import { Check } from "lucide-react";
 import dra from "@/assets/dra-yasmin.jpg";
-import { waLink } from "@/lib/whatsapp";
+import { waLink, onWhatsAppClick } from "@/lib/whatsapp";
+import { CLINIC } from "@/lib/clinic-data";
 
 const highlights = [
-  "Referência em Facetas de Resina",
-  "Mais de 30 mil casos realizados",
-  "Atendimento totalmente personalizado",
-  "Resultados naturais e duradouros",
-  "Tecnologia de última geração",
+  "Estética do sorriso com abordagem minimamente invasiva",
+  "Planejamento digital individualizado",
+  "Foco em resultados naturais e harmônicos",
+  "Materiais e protocolos de alto padrão",
+  "Atendimento humanizado do início ao pós-tratamento",
 ];
 
 export function About() {
   const reveal = useReveal();
   return (
-    <section id="sobre" className="py-24 md:py-32 bg-cream">
-      <div ref={reveal} className="reveal max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-        <div className="relative">
+    <section id="sobre" className="py-24 md:py-32 bg-cream scroll-mt-24">
+      <div
+        ref={reveal}
+        className="reveal max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center"
+      >
+        <div className="relative order-1">
           <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-luxe">
-            <img src={dra} alt="Dra. Yasmin Lopes" loading="lazy" className="w-full h-full object-cover" />
+            <img
+              src={dra}
+              alt={`Retrato profissional de ${CLINIC.professional.fullName}`}
+              loading="lazy"
+              className="w-full h-full object-cover"
+              width={800}
+              height={1000}
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
-          </div>
-          <div className="absolute -bottom-8 -right-4 md:-right-8 glass-light shadow-luxe rounded-2xl p-6 max-w-xs">
-            <div className="font-display text-4xl text-gradient-gold">+30K</div>
-            <p className="text-sm text-muted-foreground mt-1">Sorrisos transformados ao longo da carreira</p>
           </div>
           <div className="absolute -top-4 -left-4 w-32 h-32 border border-gold/40 rounded-full -z-10" />
           <div className="absolute -bottom-12 -left-8 w-48 h-48 bg-gradient-gold opacity-20 blur-3xl rounded-full -z-10" />
         </div>
 
-        <div>
-          <span className="text-xs tracking-[0.3em] uppercase text-gold-dark font-medium">A Especialista</span>
+        <div className="order-2">
+          <span className="text-xs tracking-[0.3em] uppercase text-gold-dark font-medium">
+            A Especialista
+          </span>
           <h2 className="mt-4 font-display text-4xl md:text-5xl leading-tight">
-            Conheça a especialista por trás das <span className="italic text-gradient-gold">transformações</span>
+            Conheça a profissional por trás das{" "}
+            <span className="italic text-gradient-gold">transformações</span>
           </h2>
           <p className="mt-6 text-muted-foreground text-lg leading-relaxed">
-            A <strong className="text-foreground">Dra. Yasmin Lopes</strong> é referência em
-            estética do sorriso em Fortaleza. Com formação contínua nos melhores centros
-            do Brasil e exterior, alia técnica refinada e sensibilidade artística para
-            entregar resultados que ressaltam a beleza única de cada paciente.
+            <strong className="text-foreground">{CLINIC.professional.fullName}</strong>{" "}
+            é cirurgiã-dentista dedicada à estética do sorriso e harmonização
+            facial em Fortaleza. Une técnica refinada e sensibilidade artística
+            para entregar resultados que valorizam a beleza única de cada paciente.
           </p>
+
+          <dl className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <div className="rounded-2xl border border-border bg-background p-4">
+              <dt className="text-xs uppercase tracking-widest text-muted-foreground">
+                Registro profissional
+              </dt>
+              <dd className="mt-1 font-medium text-foreground">
+                {CLINIC.professional.cro}
+              </dd>
+            </div>
+            <div className="rounded-2xl border border-border bg-background p-4">
+              <dt className="text-xs uppercase tracking-widest text-muted-foreground">
+                Atuação
+              </dt>
+              <dd className="mt-1 font-medium text-foreground">
+                {CLINIC.professional.role}
+              </dd>
+            </div>
+          </dl>
 
           <ul className="mt-8 space-y-3">
             {highlights.map((h) => (
@@ -54,9 +83,10 @@ export function About() {
 
           <a
             href={waLink("Olá Dra. Yasmin! Gostaria de agendar uma avaliação.")}
+            onClick={() => onWhatsAppClick("about")}
             target="_blank"
             rel="noopener"
-            className="mt-10 inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-full font-medium tracking-wide hover:shadow-luxe transition-all duration-500 hover:-translate-y-0.5"
+            className="mt-10 inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-full font-medium tracking-wide hover:shadow-luxe transition-all duration-500 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
           >
             Falar com a Dra. Yasmin
           </a>

@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { waLink } from "@/lib/whatsapp";
+import { waLink, onWhatsAppClick } from "@/lib/whatsapp";
 import { useReveal } from "@/hooks/useReveal";
 
 export function FinalCTA() {
@@ -12,27 +12,38 @@ export function FinalCTA() {
       </div>
 
       <div ref={reveal} className="reveal relative max-w-4xl mx-auto px-6 text-center">
-        <span className="text-xs tracking-[0.3em] uppercase text-gold-light font-medium">Agende sua avaliação</span>
+        <span className="text-xs tracking-[0.3em] uppercase text-gold-light font-medium">
+          Agende sua avaliação
+        </span>
         <h2 className="mt-6 font-display text-5xl md:text-7xl lg:text-8xl leading-[1.02]">
-          Seu novo sorriso
+          Dê o primeiro passo
           <br />
-          <span className="italic text-gradient-gold">começa hoje</span>
+          para cuidar do
+          <br />
+          <span className="italic text-gradient-gold">seu sorriso</span>
         </h2>
         <p className="mt-8 text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-light leading-relaxed">
-          Agende sua avaliação e descubra o tratamento ideal para revelar a melhor versão do seu sorriso.
+          Converse com nossa equipe e agende uma avaliação profissional. Vamos
+          entender seu caso e apresentar o melhor caminho para você.
         </p>
 
         <a
-          href={waLink()}
+          href={waLink("Olá! Gostaria de agendar minha avaliação na YL Odontologia.")}
+          onClick={() => onWhatsAppClick("final_cta")}
           target="_blank"
           rel="noopener"
-          className="mt-12 group inline-flex items-center gap-3 bg-gradient-gold text-ink px-10 py-5 rounded-full font-medium tracking-wide text-lg shadow-gold hover:shadow-luxe transition-all duration-500 hover:-translate-y-1 animate-pulse-gold"
+          className="mt-12 group inline-flex items-center gap-3 bg-gradient-gold text-ink px-10 py-5 rounded-full font-medium tracking-wide text-lg shadow-gold hover:shadow-luxe transition-all duration-500 hover:-translate-y-1 animate-pulse-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
         >
-          Quero agendar agora
-          <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+          Agendar minha avaliação
+          <ArrowRight
+            size={20}
+            className="group-hover:translate-x-1 transition-transform"
+          />
         </a>
 
-        <p className="mt-6 text-sm text-white/50">Resposta em até 5 minutos no WhatsApp</p>
+        <p className="mt-6 text-sm text-white/50">
+          Atendimento por WhatsApp durante o horário comercial.
+        </p>
       </div>
     </section>
   );
