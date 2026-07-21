@@ -11,10 +11,10 @@ import afterLabial from "@/assets/after-labial.jpg";
 import { Move } from "lucide-react";
 
 const cases = [
-  { id: "facetas", label: "Facetas de Resina", before: beforeFacetas, after: afterFacetas, patient: "Caso real — paciente YL", sessions: "2 sessões" },
-  { id: "clareamento", label: "Clareamento", before: beforeClareamento, after: afterClareamento, patient: "Caso real — paciente YL", sessions: "3 sessões" },
-  { id: "harmonizacao", label: "Gengivoplastia", before: beforeHarmonizacao, after: afterHarmonizacao, patient: "Caso real — paciente YL", sessions: "1 sessão" },
-  { id: "labial", label: "Preenchimento Labial", before: beforeLabial, after: afterLabial, patient: "Caso real — paciente YL", sessions: "1 sessão" },
+  { id: "facetas", label: "Facetas de Resina", before: beforeFacetas, after: afterFacetas, sessions: "Definido em avaliação" },
+  { id: "clareamento", label: "Clareamento", before: beforeClareamento, after: afterClareamento, sessions: "Definido em avaliação" },
+  { id: "harmonizacao", label: "Gengivoplastia", before: beforeHarmonizacao, after: afterHarmonizacao, sessions: "Definido em avaliação" },
+  { id: "labial", label: "Preenchimento Labial", before: beforeLabial, after: afterLabial, sessions: "Definido em avaliação" },
 ];
 
 export function BeforeAfter() {
@@ -33,7 +33,8 @@ export function BeforeAfter() {
       setPos(Math.max(0, Math.min(100, p)));
     };
     const onMove = (e: MouseEvent) => dragging.current && move(e.clientX);
-    const onTouch = (e: TouchEvent) => dragging.current && e.touches[0] && move(e.touches[0].clientX);
+    const onTouch = (e: TouchEvent) =>
+      dragging.current && e.touches[0] && move(e.touches[0].clientX);
     const up = () => (dragging.current = false);
     window.addEventListener("mousemove", onMove);
     window.addEventListener("touchmove", onTouch);
@@ -47,38 +48,62 @@ export function BeforeAfter() {
     };
   }, []);
 
+  const onKey = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") setPos((p) => Math.max(0, p - 4));
+    if (e.key === "ArrowRight") setPos((p) => Math.min(100, p + 4));
+    if (e.key === "Home") setPos(0);
+    if (e.key === "End") setPos(100);
+  };
+
   return (
-    <section id="resultados" className="py-24 md:py-32 bg-background">
+    <section
+      id="resultados"
+      className="py-24 md:py-32 bg-background scroll-mt-24"
+    >
       <div ref={reveal} className="reveal max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs tracking-[0.3em] uppercase text-gold-dark font-medium">Antes & Depois</span>
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <span className="text-xs tracking-[0.3em] uppercase text-gold-dark font-medium">
+            Antes & Depois
+          </span>
           <h2 className="mt-4 font-display text-4xl md:text-6xl">
             Resultados que <span className="italic text-gradient-gold">encantam</span>
           </h2>
           <p className="mt-5 text-muted-foreground text-lg">
-            Arraste o controle para ver a transformação real dos nossos pacientes.
+            Arraste o controle (ou use as setas do teclado) para ver a
+            transformação de casos reais.
           </p>
         </div>
 
         <div className="flex flex-wrap gap-3 justify-center mb-10">
-          {cases.map((c) => (
-            <button
-              key={c.id}
-              onClick={() => setActive(c)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
-                active.id === c.id
-                  ? "bg-foreground text-background shadow-soft"
-                  : "bg-secondary text-foreground/70 hover:bg-secondary/70"
-              }`}
-            >
-              {c.label}
-            </button>
-          ))}
+          {cases.map((c) => {
+            const isActive = active.id === c.id;
+            return (
+              <button
+                key={c.id}
+                onClick={() => setActive(c)}
+                aria-pressed={isActive}
+                className={`px-5 py-2.5 rounded-full text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
+                  isActive
+                    ? "bg-foreground text-background shadow-soft font-semibold"
+                    : "bg-secondary text-foreground/70 hover:bg-secondary/70 font-medium"
+                }`}
+              >
+                {c.label}
+              </button>
+            );
+          })}
         </div>
 
         <div
           ref={containerRef}
-          className={`relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-luxe select-none cursor-ew-resize group ${
+          role="slider"
+          aria-label={`Comparação antes e depois — ${active.label}`}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(pos)}
+          tabIndex={0}
+          onKeyDown={onKey}
+          className={`relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-luxe select-none cursor-ew-resize group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
             active.id === "labial" ? "aspect-[4/3]" : "aspect-[16/10]"
           }`}
           onMouseDown={() => (dragging.current = true)}
@@ -86,26 +111,34 @@ export function BeforeAfter() {
         >
           <img
             src={active.after}
-            alt="Depois"
+            alt={`Depois — ${active.label}`}
             className={`absolute inset-0 w-full h-full ${
-              active.id === "labial" ? "object-cover object-center" : "object-contain bg-black/90"
+              active.id === "labial"
+                ? "object-cover object-center"
+                : "object-contain bg-black/90"
             }`}
             loading="lazy"
           />
           <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
             <img
               src={active.before}
-              alt="Antes"
+              alt={`Antes — ${active.label}`}
               className={`absolute inset-0 h-full w-[100vw] max-w-none ${
-                active.id === "labial" ? "object-cover object-center" : "object-contain bg-black/90"
+                active.id === "labial"
+                  ? "object-cover object-center"
+                  : "object-contain bg-black/90"
               }`}
               style={{ width: `${(100 / pos) * 100}%` }}
               loading="lazy"
             />
           </div>
 
-          <div className="absolute top-6 left-6 glass px-4 py-1.5 rounded-full text-white text-xs tracking-widest uppercase">Antes</div>
-          <div className="absolute top-6 right-6 glass px-4 py-1.5 rounded-full text-white text-xs tracking-widest uppercase">Depois</div>
+          <div className="absolute top-6 left-6 glass px-4 py-1.5 rounded-full text-white text-xs tracking-widest uppercase">
+            Antes
+          </div>
+          <div className="absolute top-6 right-6 glass px-4 py-1.5 rounded-full text-white text-xs tracking-widest uppercase">
+            Depois
+          </div>
 
           <div
             className="absolute top-0 bottom-0 w-px bg-white shadow-luxe"
@@ -118,15 +151,24 @@ export function BeforeAfter() {
 
           <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4 text-white">
             <div className="glass px-4 py-2 rounded-xl">
-              <div className="text-[10px] tracking-[0.2em] uppercase opacity-80">Paciente</div>
-              <div className="text-sm font-medium">{active.patient}</div>
+              <div className="text-[10px] tracking-[0.2em] uppercase opacity-80">
+                Procedimento
+              </div>
+              <div className="text-sm font-medium">{active.label}</div>
             </div>
             <div className="glass px-4 py-2 rounded-xl text-right">
-              <div className="text-[10px] tracking-[0.2em] uppercase opacity-80">Tratamento</div>
+              <div className="text-[10px] tracking-[0.2em] uppercase opacity-80">
+                Sessões
+              </div>
               <div className="text-sm font-medium">{active.sessions}</div>
             </div>
           </div>
         </div>
+
+        <p className="mt-6 text-center text-xs text-muted-foreground max-w-2xl mx-auto">
+          Imagens de casos reais divulgadas com autorização. Resultados podem
+          variar conforme as condições individuais de cada paciente.
+        </p>
       </div>
     </section>
   );
