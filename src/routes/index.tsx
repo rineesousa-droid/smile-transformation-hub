@@ -15,10 +15,18 @@ import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "YL Odontologia — Dra. Yasmin Lopes | Facetas, Estética & Harmonização em Fortaleza" },
-      { name: "description", content: "Especialista em facetas de resina, estética do sorriso, harmonização facial e preenchimento labial em Fortaleza-CE. +30 mil sorrisos transformados." },
+      { title: "YL Odontologia — Dra. Yasmin Lopes | Estética do sorriso em Fortaleza" },
+      {
+        name: "description",
+        content:
+          "Facetas de resina, clareamento, harmonização facial e preenchimento labial em Fortaleza-CE. Atendimento com a Dra. Yasmin Lopes em três unidades.",
+      },
       { property: "og:title", content: "YL Odontologia — Dra. Yasmin Lopes" },
-      { property: "og:description", content: "Facetas de resina, estética do sorriso e harmonização facial em Fortaleza-CE. Agende sua avaliação." },
+      {
+        property: "og:description",
+        content:
+          "Estética do sorriso, harmonização facial e preenchimento labial em Fortaleza-CE. Agende sua avaliação.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -31,17 +39,30 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "Dentist",
           name: "YL Odontologia — Dra. Yasmin Lopes",
-          image: "/og-image.jpg",
-          telephone: "+55-85-99999-9999",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Av. Dom Luís, 1233",
-            addressLocality: "Fortaleza",
-            addressRegion: "CE",
-            addressCountry: "BR",
-          },
-          priceRange: "$$$",
-          aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: "1000" },
+          areaServed: "Fortaleza, CE",
+          address: [
+            {
+              "@type": "PostalAddress",
+              streetAddress: "Av. Santos Dumont, 2122 — Sala 106",
+              addressLocality: "Fortaleza",
+              addressRegion: "CE",
+              addressCountry: "BR",
+            },
+            {
+              "@type": "PostalAddress",
+              streetAddress: "Av. Castelo de Castro, 428",
+              addressLocality: "Fortaleza",
+              addressRegion: "CE",
+              addressCountry: "BR",
+            },
+            {
+              "@type": "PostalAddress",
+              streetAddress: "Av. Bezerra de Menezes, 1250 — Sala 2103",
+              addressLocality: "Fortaleza",
+              addressRegion: "CE",
+              addressCountry: "BR",
+            },
+          ],
         }),
       },
     ],
