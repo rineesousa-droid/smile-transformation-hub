@@ -1,6 +1,6 @@
 import { useReveal } from "@/hooks/useReveal";
 import { ArrowRight, Sparkles, Droplet } from "lucide-react";
-import { waLink, onWhatsAppClick } from "@/lib/whatsapp";
+import { useBooking } from "@/components/site/BookingProvider";
 import afterHarmonizacao from "@/assets/after-labial.jpg";
 
 const items = [
@@ -18,6 +18,7 @@ const items = [
 
 export function Harmonizacao() {
   const reveal = useReveal();
+  const { openBooking } = useBooking();
   return (
     <section id="harmonizacao" className="py-24 md:py-32 bg-cream scroll-mt-24">
       <div
@@ -69,16 +70,19 @@ export function Harmonizacao() {
             })}
           </div>
 
-          <a
-            href={waLink("Olá! Quero saber mais sobre harmonização facial.")}
-            onClick={() => onWhatsAppClick("harmonizacao_cta")}
-            target="_blank"
-            rel="noopener"
+          <button
+            type="button"
+            onClick={() =>
+              openBooking(
+                "harmonizacao_cta",
+                "Olá! Vim pelo site da YL Odontologia e gostaria de saber mais sobre harmonização facial.",
+              )
+            }
             className="mt-10 group inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-full font-medium tracking-wide hover:shadow-luxe transition-all duration-500 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
           >
             Quero saber mais
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </a>
+          </button>
         </div>
       </div>
     </section>

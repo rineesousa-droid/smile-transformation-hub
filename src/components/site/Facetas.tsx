@@ -1,17 +1,18 @@
 import { useReveal } from "@/hooks/useReveal";
 import { ArrowRight, Check } from "lucide-react";
-import { waLink, onWhatsAppClick } from "@/lib/whatsapp";
+import { useBooking } from "@/components/site/BookingProvider";
 import afterFacetas from "@/assets/after-1.jpg";
 
 const points = [
   "Sorriso desenhado a partir das suas características",
-  "Resultado natural, sem aparência artificial",
-  "Correção de forma, cor e proporção dos dentes",
+  "Busca por um resultado natural e harmônico",
+  "Ajuste de forma, cor e proporção dos dentes",
   "Planejamento e execução conduzidos pela Dra. Yasmin",
 ];
 
 export function Facetas() {
   const reveal = useReveal();
+  const { openBooking } = useBooking();
   return (
     <section id="facetas" className="py-24 md:py-32 bg-background scroll-mt-24">
       <div
@@ -43,16 +44,24 @@ export function Facetas() {
             ))}
           </ul>
 
-          <a
-            href={waLink("Olá! Quero transformar meu sorriso com facetas em resina.")}
-            onClick={() => onWhatsAppClick("facetas_cta")}
-            target="_blank"
-            rel="noopener"
+          <button
+            type="button"
+            onClick={() =>
+              openBooking(
+                "facetas_cta",
+                "Olá! Vim pelo site da YL Odontologia e gostaria de agendar uma avaliação para facetas em resina.",
+              )
+            }
             className="mt-10 group inline-flex items-center gap-3 bg-gradient-gold text-ink px-8 py-4 rounded-full font-medium tracking-wide shadow-gold hover:shadow-luxe transition-all duration-500 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
           >
             Quero transformar meu sorriso
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </a>
+          </button>
+
+          <p className="mt-4 text-xs text-muted-foreground max-w-md">
+            As indicações e o plano de tratamento são definidos após avaliação
+            profissional presencial.
+          </p>
         </div>
 
         <div className="order-1 lg:order-2 relative">
