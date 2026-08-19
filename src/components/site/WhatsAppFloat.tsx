@@ -1,14 +1,13 @@
 import { MessageCircle } from "lucide-react";
-import { waLink, onWhatsAppClick } from "@/lib/whatsapp";
+import { useBooking } from "@/components/site/BookingProvider";
 
 export function WhatsAppFloat() {
+  const { openBooking } = useBooking();
   return (
-    <a
-      href={waLink()}
-      onClick={() => onWhatsAppClick("floating")}
-      target="_blank"
-      rel="noopener"
-      aria-label="Falar com a YL Odontologia no WhatsApp"
+    <button
+      type="button"
+      onClick={() => openBooking("floating")}
+      aria-label="Agendar pelo WhatsApp — escolher unidade"
       className="fixed right-6 z-40 group focus-visible:outline-none"
       style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 1.5rem)" }}
     >
@@ -17,8 +16,8 @@ export function WhatsAppFloat() {
         <MessageCircle size={28} className="fill-white" aria-hidden />
       </span>
       <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap bg-foreground text-background text-xs px-3 py-2 rounded-full opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity pointer-events-none">
-        Fale com nossa equipe
+        Agendar pelo WhatsApp
       </span>
-    </a>
+    </button>
   );
 }

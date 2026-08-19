@@ -1,7 +1,7 @@
 import { useReveal } from "@/hooks/useReveal";
-import { MapPin, ExternalLink, MessageCircle } from "lucide-react";
+import { MapPin, ExternalLink, MessageCircle, Clock } from "lucide-react";
 import { CLINIC, unitMapUrl } from "@/lib/clinic-data";
-import { waLink, onWhatsAppClick } from "@/lib/whatsapp";
+import { unitWaLink, onWhatsAppClick } from "@/lib/whatsapp";
 
 export function Units() {
   const reveal = useReveal();
@@ -17,7 +17,7 @@ export function Units() {
             <span className="italic text-gradient-gold">Fortaleza</span>
           </h2>
           <p className="mt-5 text-muted-foreground text-lg">
-            Escolha a unidade mais próxima e agende seu atendimento.
+            Escolha a unidade mais próxima e fale direto com a equipe dela.
           </p>
         </div>
 
@@ -31,11 +31,38 @@ export function Units() {
                 <MapPin size={20} strokeWidth={1.75} className="text-gold-dark" aria-hidden />
               </div>
               <h3 className="mt-5 font-display text-2xl">{u.name}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1">
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                 {u.address}
               </p>
 
+              <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground flex-1">
+                <li className="flex items-start gap-2">
+                  <Clock size={15} className="text-gold-dark mt-0.5 flex-shrink-0" aria-hidden />
+                  <span>
+                    {CLINIC.hours.map((h) => (
+                      <span key={h.days} className="block">
+                        {h.days}: {h.time}
+                      </span>
+                    ))}
+                  </span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <MessageCircle size={15} className="text-gold-dark flex-shrink-0" aria-hidden />
+                  {u.whatsappDisplay}
+                </li>
+              </ul>
+
               <div className="mt-6 flex flex-col sm:flex-row md:flex-col gap-3">
+                <a
+                  href={unitWaLink(u)}
+                  onClick={() => onWhatsAppClick("unit_card", { unit: u.id })}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-gradient-gold text-ink text-sm font-medium shadow-gold hover:shadow-luxe transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                >
+                  <MessageCircle size={15} aria-hidden />
+                  Agendar nesta unidade
+                </a>
                 <a
                   href={unitMapUrl(u)}
                   target="_blank"
@@ -44,16 +71,6 @@ export function Units() {
                 >
                   <ExternalLink size={15} aria-hidden />
                   Ver no mapa
-                </a>
-                <a
-                  href={waLink(`Olá! Gostaria de agendar atendimento na ${u.name}.`)}
-                  onClick={() => onWhatsAppClick("unit_card", { unit: u.id })}
-                  target="_blank"
-                  rel="noopener"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-gradient-gold text-ink text-sm font-medium shadow-gold hover:shadow-luxe transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-                >
-                  <MessageCircle size={15} aria-hidden />
-                  Agendar atendimento
                 </a>
               </div>
             </div>
